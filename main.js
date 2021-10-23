@@ -8,6 +8,8 @@ let icon = document.getElementById("icon");
 
 let resultLocation = document.getElementById("locationDetail");
 
+let hourlyData = document.getElementById("hourlyData");
+
 let key = "69533cbd9b424eaa880105408211910";
 
 let showWeatherReport = () => {
@@ -41,11 +43,16 @@ let showWeatherReport = () => {
 
         let hourlyReport = content.forecast.forecastday[0].hour;
 
-        for (let i = 0; i < hourlyReport.length; i++) {
-          console.log(hourlyReport[i].temp_c);
-        }
+        let str = "";
 
-        console.log(hourlyReport);
+        hourlyReport.forEach((element, index) => {
+          str += `
+            <tr>
+              <td>${index + 1 + ":" + "00"}</td>
+              <td>${element.temp_c}</td>
+            </tr>`;
+        });
+        hourlyData.innerHTML = str;
 
         resultLocation.innerText = location;
 
